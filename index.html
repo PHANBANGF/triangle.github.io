@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phân loại tam giác</title>
+    <style>
+        body {
+            background-color: #0077b6; /* Màu nền xanh dương */
+            color: #ffffff; /* Màu chữ trắng */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #f4a261; /* Màu cam */
+        }
+
+        form {
+            background-color: #2a9d8f; /* Màu xanh biển đậm */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        label, input {
+            color: #e9c46a; /* Màu vàng */
+        }
+
+        button {
+            background-color: #e76f51; /* Màu cam đậm */
+            color: #ffffff; /* Màu chữ trắng */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f4a261; /* Màu cam */
+        }
+
+        #ketQua {
+            color: rgb(193, 220, 39); /* Màu xanh biển đậm */
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Phân loại tam giác</h1>
+
+    <form id="triangleForm">
+        <label for="sideA">Nhập độ dài cạnh a:</label>
+        <input type="number" id="sideA" name="sideA" required>
+        <br>
+
+        <label for="sideB">Nhập độ dài cạnh b:</label>
+        <input type="number" id="sideB" name="sideB" required>
+        <br>
+
+        <label for="sideC">Nhập độ dài cạnh c:</label>
+        <input type="number" id="sideC" name="sideC" required>
+        <br>
+
+        <button type="button" onclick="phanLoaiTamGiac()">Phân loại</button>
+    </form>
+
+    <p id="ketQua"></p>
+
+    <script >
+        function phanLoaiTamGiac() {
+        const a = parseFloat(document.getElementById("sideA").value);
+        const b = parseFloat(document.getElementById("sideB").value);
+        const c = parseFloat(document.getElementById("sideC").value);
+        const ketQuaElement = document.getElementById("ketQua");
+
+    if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        ketQuaElement.textContent = "Vui lòng nhập số hợp lệ cho các cạnh.";
+    //} else if (a <= 0 || b <= 0 || c <= 0) {
+        //ketQuaElement.textContent = "Các cạnh phải là số dương.";
+    } else if (a + b <= c || a + c <= b || b + c <= a || a <= 0 || b <= 0 || c <= 0) {
+        ketQuaElement.textContent = "Không phải tam giác.";
+    } else if (a === b && b === c) {
+        ketQuaElement.textContent = "Tam giác đều.";
+    } else if (a === b && b !== c || b === c && c !== a || c === a && a !== b) {
+        ketQuaElement.textContent = "Tam giác cân.";
+    } else if (a ** 2 + b ** 2 === c ** 2 || b ** 2 + c ** 2 === a ** 2 || a ** 2 + c ** 2 === b ** 2) {
+        ketQuaElement.textContent = "Tam giác vuông.";
+    } else {
+        ketQuaElement.textContent = "Tam giác thường.";
+    }
+}
+    </script>
+    
+</body>
+</html>
